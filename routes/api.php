@@ -1,14 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\AdminController;
-use App\Http\Controllers\Api\CourseController;
-use App\Http\Controllers\Api\HistoryController;
-use App\Http\Controllers\Api\MediaController;
-use App\Http\Controllers\Api\SectionController;
-use App\Http\Controllers\Api\StudentController;
-use App\Http\Controllers\Api\TestController;
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,5 +51,20 @@ Route::group([
    
     
 });
+
+
+Route::group([
+    'middleware' => ['assign.guard:admin'],
+    'prefix' => 'product'
+], function () {
+
+    Route::get('/index',[ProductController::class,'index']);
+    Route::post('/create_product', [ProductController::class, 'create_product']);
+    Route::delete('/delete_product/{id}', [ProductController::class, 'delete_product']);
+    Route::patch('/update_product/{id}', [ProductController::class, 'update_product']);
+
+
+});
+
 
     

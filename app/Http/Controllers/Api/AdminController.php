@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -40,7 +41,7 @@ class AdminController extends Controller
         }
 
         if (! $token = auth()->attempt($validator->validated())) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => $token], 401);
         }
         return $this->createNewToken($token); 
         
@@ -74,12 +75,15 @@ class AdminController extends Controller
     }
     
 
-    // public function refresh() {
-    //     return $this->createNewToken(auth()->refresh());
-    // }
+    public function refresh() {
+        return $this->createNewToken(Auth::refresh());
+    }
     
     
     public function adminProfile() {
+        if (!auth()->user()) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
         return response()->json(auth()->user());
     }
     
