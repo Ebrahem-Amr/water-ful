@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     public function __construct() {
-        $this->middleware('jwt.verify', ['except' => ['login', 'register','index']]);
+        $this->middleware('jwt.verify:user', ['only' => ['logout', 'refresh','adminProfile']]);
+        $this->middleware('assign.guard:user', ['only' => ['login', 'register','index']]);
     }
     
     public function index(){

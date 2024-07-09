@@ -14,7 +14,7 @@ class ProductController extends Controller
     //
 
     public function __construct() {
-        $this->middleware('jwt.verify', ['except' => ['index']]);
+        $this->middleware('jwt.verify:admin', ['except' => ['index']]);
     }
 
     public function index(){

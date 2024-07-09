@@ -17,9 +17,10 @@ class AdminController extends Controller
      * @return void
      */
     public function __construct() {
-        $this->middleware('jwt.verify', ['except' => ['login', 'register','index']]);
+        $this->middleware('jwt.verify:admin', ['only' => ['logout', 'refresh','adminProfile']]);
+        $this->middleware('assign.guard:admin', ['only' => ['login', 'register','index']]);
     }
-
+    
 
     public function index(){
         $admin=Admin::Get();

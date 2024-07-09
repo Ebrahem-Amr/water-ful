@@ -23,7 +23,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group([
-    'middleware' => ['assign.guard:admin'],
     'prefix' => 'admin'
 ], function () {
 
@@ -38,7 +37,6 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => ['assign.guard:user'],
     'prefix' => 'user'
 ], function () {
 
@@ -54,7 +52,6 @@ Route::group([
 
 
 Route::group([
-    'middleware' => ['assign.guard:admin'],
     'prefix' => 'product'
 ], function () {
 
