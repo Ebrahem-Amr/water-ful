@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AdminController;
+use App\Http\Controllers\Api\CustomerServiceController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
@@ -37,12 +38,27 @@ Route::group([
 });
 
 Route::group([
+    'prefix' => 'customerservice'
+], function () {
+
+    Route::get('/index',[CustomerServiceController::class,'index']);
+    Route::post('/login', [CustomerServiceController::class, 'login']);
+    Route::post('/register', [CustomerServiceController::class, 'register']);
+    Route::post('/logout', [CustomerServiceController::class, 'logout']);
+    Route::post('/refresh', [CustomerServiceController::class, 'refresh']);
+    Route::get('/customerservice-profile', [CustomerServiceController::class, 'customerserviceProfile']); 
+   
+    
+});
+
+Route::group([
     'prefix' => 'user'
 ], function () {
 
     Route::get('/index',[UserController::class,'index']);
     Route::post('/login', [UserController::class, 'login']);
     Route::post('/register', [UserController::class, 'register']);
+    Route::post('/verify', [UserController::class, 'verify']);
     Route::post('/logout', [UserController::class, 'logout']);
     Route::post('/refresh', [UserController::class, 'refresh']);
     Route::get('/user-profile', [UserController::class, 'userProfile']); 
