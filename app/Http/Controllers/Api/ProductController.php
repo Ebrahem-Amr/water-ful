@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -32,6 +31,7 @@ class ProductController extends Controller
             'Quantity' => 'required|integer',
             'duration' => 'string',
             'image' => 'required|file|image|max:2048',
+            'category_id'=> 'required',
         ]);
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
@@ -92,6 +92,7 @@ class ProductController extends Controller
             'Quantity' => 'required|integer',
             'duration' => 'string',
             'image' => 'required|file|image|max:2048',
+            'category_id'=> 'required',
         ]);
         if($validator->fails()){
             

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AdminController;
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CustomerServiceController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UserController;
@@ -75,6 +76,18 @@ Route::group([
     Route::post('/create_product', [ProductController::class, 'create_product']);
     Route::delete('/delete_product/{id}', [ProductController::class, 'delete_product']);
     Route::patch('/update_product/{id}', [ProductController::class, 'update_product']);
+
+
+});
+
+Route::group([
+    'prefix' => 'category'
+], function () {
+
+    Route::get('/index',[CategoryController::class,'index']);
+    Route::post('/create_category', [CategoryController::class, 'create_category']);
+    Route::delete('/delete_category/{id}', [CategoryController::class, 'delete_category']);
+    Route::patch('/update_category/{id}', [CategoryController::class, 'update_category']);
 
 
 });
