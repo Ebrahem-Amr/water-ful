@@ -4,7 +4,9 @@ use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CustomerServiceController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\UserCartController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\UserPurchaseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -93,4 +95,27 @@ Route::group([
 });
 
 
+Route::group([
+    'prefix' => 'cart'
+], function () {
+
+    Route::get('/index',[UserCartController::class,'index']);
+    Route::post('/create', [UserCartController::class, 'create']);
+    Route::delete('/delete/{id}', [UserCartController::class, 'delete']);
+
+});
+
+Route::group([
+    'prefix' => 'UserPurchase'
+], function () {
+
+    Route::get('/index',[UserPurchaseController::class,'index']);
+    Route::get('/userPurchases',[UserPurchaseController::class,'userPurchases']);
+    Route::post('/create', [UserPurchaseController::class, 'create']);
+    Route::delete('/delete/{id}', [UserPurchaseController::class, 'delete']);
+
+});
+
+
+    
     
