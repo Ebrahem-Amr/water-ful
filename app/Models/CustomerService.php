@@ -34,5 +34,9 @@ class CustomerService extends Authenticatable implements JWTSubject
      */
     public function getJWTCustomClaims() {
         return [];
+    }
+    public function message()
+    {
+        return $this->hasMany(Message::class);
     }    
 }

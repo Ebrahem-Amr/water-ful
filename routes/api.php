@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CustomerServiceController;
+use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UserCartController;
 use App\Http\Controllers\Api\UserController;
@@ -115,6 +116,18 @@ Route::group([
     Route::delete('/delete/{id}', [UserPurchaseController::class, 'delete']);
 
 });
+
+Route::group([
+    'prefix' => 'message'
+], function () {
+
+    Route::get('/getMessageOfCustomerService/{id}',[MessageController::class,'getMessageOfCustomerService']);
+    Route::post('/storeMessageOfCustomerService/{id}',[MessageController::class,'storeMessageOfCustomerService']);
+    Route::get('/getMessageOfUser',[MessageController::class,'getMessageOfUser']);
+    Route::post('/storeMessageOfUser',[MessageController::class,'storeMessageOfUser']);
+
+});
+
 
 
     
